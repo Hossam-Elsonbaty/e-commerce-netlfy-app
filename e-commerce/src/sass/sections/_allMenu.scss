@@ -1,0 +1,133 @@
+// import colors style
+@import '../variables/colors' ;
+.all-menu-container{
+  height: 100dvh;
+  position:relative; 
+  .aboutUs-container{
+    // position: absolute;
+    margin: 5% 0;
+    @include breakpoint(mobile){
+      top: 2%;
+    }
+    .features-container {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+      h3{
+        background-color: rgb(255, 255, 255);
+        padding: 5px 14px;
+        border: 2px dashed #ac33ff;
+        border: 2px dashed #7f3aaf;
+        // color: #ffbe33;
+        color: #7f3aaf;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+      }
+      .menu-items{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        width: 100%;
+      }
+    }
+  }
+}
+.item-popup-container{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  .item-images-slider{
+    width: 45%;
+  }
+  .item-more-details{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;  
+    padding-top: 20px;
+    h3{
+      font-size: 25px;
+    }
+    .item-options{
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      padding-top: 35px;
+      .AddFav{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #7f3aaf;
+        border: none;
+        outline: none;
+        width: 100px;
+        padding: 18px;
+        cursor: pointer;
+        &:hover{
+          background-color: #191819;
+        }
+        i{
+          color: #fff;
+        }
+      }
+      .AddCart{
+        background-color: #495057;
+        border: none;
+        outline: none;
+        min-width: 120px;
+        padding: 10px;
+        cursor: pointer;
+        color: #fff;
+        font-size: 18px;
+        &:hover{
+          background-color: #191819;
+        }
+      }
+      .quantity-div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(0, 0, 0, 0.164);
+        border-radius: 8px;
+        width: 100px;
+        @include breakpoint(mobile){
+          width: 60px;
+        }  
+        .calcDiv{
+          display: flex;
+          flex-direction: column;
+          width: 30%;
+          @include breakpoint(mobile){
+            width: 40%;
+          }    
+          border-left: 1px solid rgba(0, 0, 0, 0.164);
+          .calc-btn{
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+          }
+        }
+        .count{
+          width: 60%;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+.p-dialog{
+  width: 800px !important;
+}
+.p-dialog .p-dialog-content {
+  background: #ffffff;
+  color: #495057;
+  padding: 1rem !important;
+}

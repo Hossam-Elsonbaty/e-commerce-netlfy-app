@@ -1,0 +1,48 @@
+@keyframes move-bubble {
+  0% {
+    left: 30%;
+  }
+  50% {
+    left: 65%;
+  }
+  100% {
+    left: 30%;
+  }
+}
+@mixin flex ($gap,$justify,$align,$direction){
+  display: flex;
+  justify-content:$justify ;
+  align-items: $align;
+  flex-direction: $direction;
+  gap:$gap;
+}
+@mixin button (){
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+// media query
+@mixin breakpoint ($point) {
+  @if $point == mobile {
+    @media (max-width : 768px ){
+      @content ;
+    }
+  } @else if $point == small {
+    @media (min-width : 767px ) and (max-width : 991 ){
+      @content ;
+    }
+  } @else if $point == medium {
+    @media (min-width : 992px ) and (max-width : 1599px ){
+      @content ;
+    }
+  } @else if $point == large {
+    @media (min-width : 1400px ){
+      @content ;
+    }
+  }@else if $point == notMobile {
+    @media (min-width : 767 ) and (max-width : 1599px ) {
+      @content
+    }
+  }
+}

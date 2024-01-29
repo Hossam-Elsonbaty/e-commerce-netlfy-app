@@ -1,0 +1,129 @@
+@import '../variables/colors' ;
+header  {
+  direction: rtl;
+  width: 100vw;
+  background-color:#fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 5px ;
+  position: fixed ;
+  top: 0;
+  left: 0;
+  z-index:1;
+  box-shadow: 0px 3px 10px 0px #00000024;
+  @include breakpoint (mobile) {
+    flex-direction: column;
+    padding: 5px 10px;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+  .barBtn{
+    @include breakpoint (mobile) {
+      display: flex;
+      align-self: flex-end;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+    display:none;
+    i{
+      font-size:20px ;
+      color:$Dark_color;
+    }
+  }
+  .logo {
+    @include breakpoint(mobile){
+      height: 40px;
+    }
+    .mobile-screens{
+      @include breakpoint(mobile){
+        width: 50px !important;
+        // height: 40px !important;
+        display: flex;
+      }
+    }
+    .all-screens{
+      @include breakpoint(notMobile){
+        width:250px !important;
+      }
+      @include breakpoint(mobile){
+        width: 0 !important;
+      }
+    }
+  }
+  .nav-links{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    @include breakpoint (mobile){
+      width: 100%;
+      transform: translateY(-20vh);
+      transition: 1s;
+    }
+    &.responsive{
+      transform:none;
+      display: flex;
+      justify-content: center;  
+      transform: none;
+      .cancelBtn{
+        display:flex;
+      }
+      .barBtn{
+        display:none;
+      }
+      .fullScreen-links {
+        display: flex;
+        transform: none;
+        transition: 1s;
+      }
+    }
+    ul {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      list-style: none;
+      width: 100%;
+      @include breakpoint(mobile) {
+        flex-direction: column;
+        display: none;
+        transform: translateY(-100vh);
+      }
+      li {
+        @include breakpoint(mobile) {
+          margin-bottom: 20px;
+        }
+        .header_link, .side_link {
+          @include breakpoint(mobile) {
+            // display: flex;
+          }
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 17px;
+          color: rgba(0, 0, 0, 0.611);
+          &:hover{
+            color: $Dark_color;
+          }
+          &.active{
+            color: $Dark_color;
+          }
+        }
+      }
+      .cancelBtn {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        display: none;
+        i{
+          font-size: 40px;
+          color: $White_color;
+        }
+      }
+    }
+  }
+}
+

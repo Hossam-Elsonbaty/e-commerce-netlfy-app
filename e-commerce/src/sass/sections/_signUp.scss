@@ -1,0 +1,32 @@
+.signUP-form{
+  .input-cont{
+    position: relative;
+    .instructions{
+      position: absolute;
+      top: 110%;
+      width: 350px;
+      z-index: 9;
+      background-color: black;
+      color: #fff;
+      font-size: 14px;
+      border-radius: 4px;
+      padding: 5px;
+      .pi-info{
+        border: 1px solid #fff;
+        border-radius: 10px;
+        padding: 3px;
+        font-size: 10px;
+        margin-right: 2px;
+      }
+    }
+    .offscreen{
+      display: none;
+      max-width: 300px;
+    }
+    .confirm{
+      &:disabled{
+        background-color: antiquewhite;
+      }
+    }
+  }
+}
