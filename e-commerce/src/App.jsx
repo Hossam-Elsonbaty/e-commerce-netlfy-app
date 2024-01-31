@@ -23,6 +23,9 @@ import Dispatch from './components/superUser/dispatch';
 import Treasury from './components/treasury';
 import LoginForEmployee from './components/loginForEmloyee';
 import EmployeeScreens from './components/employeeScreens';
+import { AuthProvider } from './components/auth/authContext';
+import RequireAuth from './components/auth/requireAuth';
+import PrivateRoutes from './components/auth/privateRoutes';
 
 // const initState = {
 //   product_data : null
@@ -40,33 +43,39 @@ function App() {
   
   return (
     <Router>
-      <Routes>
-        <Route path ='/' exact element= {<Home/>}/>
-        <Route path ='/login' exact element= {<Login/>}/>
-        <Route path ='/employee-login' exact element= {<LoginForEmployee/>}/>
-        <Route path ='/sign-up' exact element= {<SignUp/>}/>
-        <Route path ='/all-menu' exact element= {<AllMenu/>}/>
-        <Route path ='/treasury' exact element= {<Treasury/>}/>
-        <Route path ='/my-cart' exact element= {<MyCart/>}/>
-        <Route path ='/checkout' exact element= {<Checkout/>}/>
-        <Route path ='/employee-screens' exact element= {<EmployeeScreens/>}></Route>
-        <Route path='/super-user' exact element={<SuperUser/>}>
-          <Route path ='procurements' exact element= {<Procurements/>}/>
-          <Route path ='dispatch' exact element= {<Dispatch/>}/>
-          <Route path='permissions' exact element={<Permissions/>}/>
-          <Route path='users' exact element={<Users/>}/>
-          <Route path='add-product/:productID' exact element={<AddProduct/>}/>
-          <Route path='view-products' exact element={<ViewProducts/>}/>
-          <Route path='view-product/:productID' exact element={<ViewProduct/>}/>
-          <Route path='add-sections' element={<AddSections/>}/>
-          <Route path='admin' element={<Admin/>}/>
-        </Route>
-        <Route path='/admin' exact element={<Admin/>}>
-          <Route path='add-new-order/:customerID' element={<AddNewOrder/>}/>
-          <Route path='view-order/:customerID' element={<ViewOrder/>}/>
-          <Route path='orders' element={<Orders/>}/>
-        </Route>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path ='/' exact element= {<Home/>}/>
+          <Route path ='/login' exact element= {<Login/>}/>
+          <Route path ='/employee-login' exact element= {<LoginForEmployee/>}/>
+          <Route path ='/sign-up' exact element= {<SignUp/>}/>
+          <Route path ='/all-menu' exact element= {<AllMenu/>}/>
+          {/* <Route path ='/treasury' exact element= {<RequireAuth><Treasury/></RequireAuth>}/> */}
+          <Route path ='/my-cart' exact element= {<MyCart/>}/>
+          <Route path ='/checkout' exact element= {<Checkout/>}/>
+          <Route element={<PrivateRoutes/>}>
+            <Route path ='/treasury' exact element= {<Treasury/>}/>
+          </Route>
+          <Route path ='/employee-screens' exact element= {<EmployeeScreens/>}>
+          </Route>
+          <Route path='/super-user' exact element={<RequireAuth><SuperUser/></RequireAuth>}>
+            <Route path ='procurements' exact element= {<Procurements/>}/>
+            <Route path ='dispatch' exact element= {<Dispatch/>}/>
+            <Route path='permissions' exact element={<Permissions/>}/>
+            <Route path='users' exact element={<Users/>}/>
+            <Route path='add-product/:productID' exact element={<AddProduct/>}/>
+            <Route path='view-products' exact element={<ViewProducts/>}/>
+            <Route path='view-product/:productID' exact element={<ViewProduct/>}/>
+            <Route path='add-sections' element={<AddSections/>}/>
+            <Route path='admin' element={<Admin/>}/>
+          </Route>
+          <Route path='/admin' exact element={<Admin/>}>
+            <Route path='add-new-order/:customerID' element={<AddNewOrder/>}/>
+            <Route path='view-order/:customerID' element={<ViewOrder/>}/>
+            <Route path='orders' element={<Orders/>}/>
+          </Route>
+        </Routes>
+      </AuthProvider>
     </Router>
   )
 }

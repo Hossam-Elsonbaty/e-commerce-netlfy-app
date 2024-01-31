@@ -30,7 +30,7 @@ export default function Login() {
       setUserName('')
       setPwd('')
       // navigate(`/home/${response?.data?.id}`)
-      navigate(`/home`)
+      navigate(`/`)
     }).catch((error)=>{
       if(!error?.response){
         setErrMsg('No Server Response');
@@ -63,7 +63,7 @@ export default function Login() {
             <div className='col'>
               <div className='form-header'>
                 <div className='top'>
-                  <h3>شركة و حلواني الأصيل</h3>
+                  <h3>شركة كوادرا كود  </h3>
                 </div>
                 <span className='label'>من فضلك قم بأدخال هذه البيانات لتسجيل الدخول</span>
                 <span ref={errRef} className={errMsg?"errmsg":"offscreen"}>{errMsg}</span>

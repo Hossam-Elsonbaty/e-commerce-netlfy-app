@@ -1,10 +1,10 @@
 import React, {useState,useContext,useRef, useEffect} from 'react';
 import image1 from'../NEW QC/New folder/Illustration-PNG-Images.png';
 import logo from '../NEW QC/لوجو qc-12.png';
-import {NavLink , useNavigate} from 'react-router-dom';
+import {NavLink , useNavigate, useLocation} from 'react-router-dom';
 import axios from'axios';
 import { InputText } from "primereact/inputtext";
-// import { AuthContext } from './AuthContext';
+import { useAuth } from './auth/authContext';
 export default function LoginForEmployee() {
   const errRef = useRef();
   const [username, setUserName] = useState('');
@@ -13,9 +13,10 @@ export default function LoginForEmployee() {
   const [success, setSuccess] = useState(false);
   const [employeeData, setEmployeeData] = useState();
   const [employeeScreens, setEmployeeScreens] = useState();
-  // const { setAuth } = useContext(AuthContext);
-  // const { auth } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirectPath = location.state?.path || '/'
+  const auth = useAuth();
   useEffect(()=>{
     setErrMsg('')
   },[username, pwd])
@@ -26,16 +27,15 @@ export default function LoginForEmployee() {
       password:pwd
     }).then((response)=>{
       const userId  = response?.data?.id;
+      auth.login(userId);
       setEmployeeData(response.data)
       setEmployeeScreens(response.data.accessible_screens)
       localStorage.setItem('userId', `${userId}`);
       localStorage.setItem('user-screens', JSON.stringify(response.data.accessible_screens));
       setSuccess(true);
       setUserName('');
-      setPwd('');
-      // console.log(employeeScreens);
-      // navigate(`/home/${response?.data?.id}`)
-      navigate(`/employee-screens`)
+      // setPwd('');
+      navigate(redirectPath);
     }).catch((error)=>{
       if(!error?.response){
         setErrMsg('No Server Response');
